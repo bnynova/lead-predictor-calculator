@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lead Predictor Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="presentation">
+              <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v13A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-13Zm4 2.2v8.6l6.8-4.3L8 7.7Z" />
+            </svg>
+          </div>
+          <div>
+            <h1>LeadPredictor</h1>
+            <p>Campaign forecasting dashboard</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard" aria-label="Lead predictor calculator">
+        <aside class="sidebar panel">
+          <div class="field-group">
+            <label for="language">Language</label>
+            <div class="select-wrap">
+              <select id="language">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="currency">Currency</label>
+            <div class="select-wrap">
+              <select id="currency">
+                <option value="USD">US Dollar</option>
+                <option value="EUR">Euro</option>
+                <option value="GBP">British Pound</option>
+                <option value="AUD">Australian Dollar</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="campaign-start">Campaign Start</label>
+            <input id="campaign-start" type="date" />
+          </div>
+
+          <div class="field-group">
+            <label for="campaign-end">Campaign End</label>
+            <input id="campaign-end" type="date" />
+          </div>
+
+          <div class="field-group">
+            <label for="total-revenue">Total Revenue</label>
+            <div class="input-prefix">
+              <span id="currency-prefix">$</span>
+              <input id="total-revenue" type="number" min="0" step="100" value="10000" />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="avg-order-value">Average Order Value</label>
+            <div class="input-prefix">
+              <span id="currency-prefix-aov">$</span>
+              <input id="avg-order-value" type="number" min="1" step="10" value="1000" />
+            </div>
+          </div>
+        </aside>
+
+        <section class="content">
+          <div class="panel chart-panel">
+            <div class="section-head">
+              <div>
+                <h2>Monthly Growth</h2>
+                <p>Forecasted funnel growth across the selected campaign window</p>
+              </div>
+              <div class="legend" aria-hidden="true">
+                <span><i class="legend-prospects"></i>Prospects</span>
+                <span><i class="legend-leads"></i>Leads</span>
+                <span><i class="legend-customers"></i>Customers</span>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <div class="chart-grid" id="chart-grid" aria-hidden="true"></div>
+              <div class="chart" id="chart" role="img" aria-label="Monthly growth chart"></div>
+            </div>
+          </div>
+
+          <div class="metrics">
+            <article class="metric-card panel">
+              <div class="metric-top">
+                <span class="metric-icon">◫</span>
+                <span class="metric-label">Prospects</span>
+              </div>
+              <strong id="prospects-value">0</strong>
+              <div class="metric-sub" id="prospects-ratio">100%</div>
+              <div class="metric-track"><span id="prospects-track"></span></div>
+            </article>
+
+            <article class="metric-card panel">
+              <div class="metric-top">
+                <span class="metric-icon">●</span>
+                <span class="metric-label">Leads</span>
+              </div>
+              <strong id="leads-value">0</strong>
+              <div class="metric-sub" id="leads-ratio">0%</div>
+              <div class="metric-track"><span id="leads-track"></span></div>
+            </article>
+
+            <article class="metric-card panel">
+              <div class="metric-top">
+                <span class="metric-icon">◆</span>
+                <span class="metric-label">Customers</span>
+              </div>
+              <strong id="customers-value">0</strong>
+              <div class="metric-sub" id="customers-ratio">0%</div>
+              <div class="metric-track"><span id="customers-track"></span></div>
+            </article>
+          </div>
+
+          <section class="panel sliders-panel">
+            <div class="slider-group">
+              <div class="slider-head">
+                <label for="lead-response-rate">Lead Response Rate</label>
+                <output id="lead-response-output">40%</output>
+              </div>
+              <input id="lead-response-rate" type="range" min="1" max="100" value="40" />
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-head">
+                <label for="prospect-response-rate">Prospect Response Rate</label>
+                <output id="prospect-response-output">20%</output>
+              </div>
+              <input id="prospect-response-rate" type="range" min="1" max="100" value="20" />
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
